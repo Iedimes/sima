@@ -12,7 +12,7 @@
             :action="'{{ url('admin/detail-memos') }}'"
             :memo={{$detailMemo->memo_id}}
             :local_dependencia="{{$local_dependencia->id}}"
-            :logueado="{{$logueado}}"
+            {{-- :logueado="{{$logueado}}" --}}
             :hoy="'{{$hoy}}'"
 
             v-cloak

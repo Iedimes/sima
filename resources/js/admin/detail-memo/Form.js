@@ -13,6 +13,7 @@ Vue.component('detail-memo-form', {
                 date_exit:  '' ,
                 obs:  '' ,
                 state_id:  3 ,
+                admin_user_id: '',
 
             }
         }

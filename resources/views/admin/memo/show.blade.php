@@ -141,6 +141,7 @@ inline-template>
                                 <th is='sortable' :column="'date_exit'">{{ trans('admin.detail-memo.columns.date_exit') }}</th>
                                 <th is='sortable' :column="'obs'">{{ trans('admin.detail-memo.columns.obs') }}</th>
                                 <th is='sortable' :column="'state_id'">{{ trans('admin.detail-memo.columns.state_id') }}</th>
+                                <th is='sortable' :column="'admin_user_id'">{{ trans('admin.detail-memo.columns.admin_user_id') }}</th>
 
                                 <th></th>
                             </tr>
@@ -172,6 +173,7 @@ inline-template>
                                 <td>@{{ item.date_exit | datetime }}</td>
                                 <td>@{{ item.obs }}</td>
                                 <td>@{{ item.estado.name }}</td>
+                                <td>@{{ item.user_admin.full_name }}</td>
 
                                 <td>
                                     <div class="row no-gutters">

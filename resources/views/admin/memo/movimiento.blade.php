@@ -72,6 +72,9 @@
         <td style="border: 1px solid">
             <b>Observación</b>
         </td>
+        <td style="border: 1px solid">
+            <b>Recepcionado por</b>
+        </td>
 
         <td style="border: 1px solid">
             <b>Estado</b>
@@ -85,6 +88,7 @@
             <td style="border: 1px solid"> {{ $item->date_entry }}</td>
             <td style="border: 1px solid"> {{ $item->date_exit }}</td>
             <td style="border: 1px solid"> {{ $item->obs }}</td>
+            <td style="border: 1px solid"> {{ $item->user_admin->full_name }}</td>
             <td style="border: 1px solid"> {{ $item->estado->name}}</td>
         </tr>
         @endforeach
