@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\UserCedula\IndexUserCedula;
 use App\Http\Requests\Admin\UserCedula\StoreUserCedula;
 use App\Http\Requests\Admin\UserCedula\UpdateUserCedula;
 use App\Models\UserCedula;
+use App\Models\AdminUser;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -65,7 +66,9 @@ class UserCedulasController extends Controller
     {
         $this->authorize('admin.user-cedula.create');
 
-        return view('admin.user-cedula.create');
+        $user=AdminUser::all();
+
+        return view('admin.user-cedula.create', compact('user'));
     }
 
     /**
@@ -78,6 +81,7 @@ class UserCedulasController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        $sanitized ['user_id']=  $request->getUserId();
 
         // Store the UserCedula
         $userCedula = UserCedula::create($sanitized);

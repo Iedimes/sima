@@ -26,9 +26,9 @@ class StoreUserCedula extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'integer'],
+            'user' => [''],
             'cedula' => ['required', 'integer'],
-            
+
         ];
     }
 
@@ -44,5 +44,10 @@ class StoreUserCedula extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    public function getUserId()
+    {
+        return $this->get('user')['id'];
     }
 }
