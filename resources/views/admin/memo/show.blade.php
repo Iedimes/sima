@@ -34,10 +34,10 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-2">
-                <p class="card-text"><strong>FECHA_DOC:</strong> {{ $memo->date_doc }}</p>
+                <p class="card-text"><strong>FECHA_DOC:</strong> {{ date('d/m/Y',strtotime(trim($memo->date_doc))) }}</p>
             </div>
             <div class="form-group col-sm-3">
-                <p class="card-text"><strong>FECHA_ENTRADA:</strong> {{ $memo->date_entry }}</p>
+                <p class="card-text"><strong>FECHA_ENTRADA:</strong> {{ date('d/m/Y H:i:s',strtotime(trim($memo->date_entry))) }}</p>
             </div>
             <div class="form-group col-sm-3">
                 <p class="card-text"><strong>OBSERVACION:</strong> {{ $memo->obs }}</p>
@@ -126,15 +126,15 @@ inline-template>
                     <table class="table table-hover table-listing">
                         <thead>
                             <tr>
-                                <th class="bulk-checkbox">
+                                {{-- <th class="bulk-checkbox">
                                     <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                     <label class="form-check-label" for="enabled">
                                         #
                                     </label>
-                                </th>
+                                </th> --}}
 
-                                <th is='sortable' :column="'id'">{{ trans('admin.detail-memo.columns.id') }}</th>
-                                <th is='sortable' :column="'memo_id'">{{ trans('admin.detail-memo.columns.memo_id') }}</th>
+                                {{-- <th is='sortable' :column="'id'">{{ trans('admin.detail-memo.columns.id') }}</th>
+                                <th is='sortable' :column="'memo_id'">{{ trans('admin.detail-memo.columns.memo_id') }}</th> --}}
                                 <th is='sortable' :column="'odependency_id'">{{ trans('admin.detail-memo.columns.odependency_id') }}</th>
                                 <th is='sortable' :column="'ddependency_id'">{{ trans('admin.detail-memo.columns.ddependency_id') }}</th>
                                 <th is='sortable' :column="'date_entry'">{{ trans('admin.detail-memo.columns.date_entry') }}</th>
@@ -159,18 +159,18 @@ inline-template>
                         </thead>
                         <tbody>
                             <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''" v-if="item.post_ddependencia.id == {{$local_dependencia->id}} && item.estado.id != 2">
-                                <td class="bulk-checkbox">
+                                {{-- <td class="bulk-checkbox">
                                     <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                     <label class="form-check-label" :for="'enabled' + item.id">
                                     </label>
-                                </td>
+                                </td> --}}
 
-                            <td>@{{ item.id }}</td>
-                                <td>@{{ item.memo_id }}</td>
+                            {{-- <td>@{{ item.id }}</td>
+                                <td>@{{ item.memo_id }}</td> --}}
                                 <td>@{{ item.post_odependencia.name }}</td>
                                 <td>@{{ item.post_ddependencia.name }}</td>
-                                <td>@{{ item.date_entry | datetime }}</td>
-                                <td>@{{ item.date_exit | datetime }}</td>
+                                <td>@{{ item.date_entry | datetime("DD/MM/Y HH:mm:ss") }}</td>
+                                <td>@{{ item.date_exit | datetime("DD/MM/Y HH:mm:ss") }}</td>
                                 <td>@{{ item.obs }}</td>
                                 <td>@{{ item.estado.name }}</td>
                                 <td>@{{ item.user_admin.full_name }}</td>
@@ -199,14 +199,14 @@ inline-template>
                         </tbody>
                     </table>
 
-                    <div class="row" v-if="pagination.state.total > 0">
+                    {{-- <div class="row" v-if="pagination.state.total > 0">
                         <div class="col-sm">
                             <span class="pagination-caption">{{ trans('brackets/admin-ui::admin.pagination.overview') }}</span>
                         </div>
                         <div class="col-sm-auto">
                             <pagination></pagination>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="no-items-found" v-if="!collection.length > 0">
                         <i class="icon-magnifier"></i>

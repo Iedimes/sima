@@ -2,7 +2,7 @@ import AppForm from '../app-components/Form/AppForm';
 
 Vue.component('detail-memo-form', {
     mixins: [AppForm],
-    props:['memo', 'logueado', 'local_dependencia', 'hoy'],
+    props:['memo', 'logueado', 'local_dependencia', 'hoy', 'ddependency'],
     data: function() {
         return {
             form: {

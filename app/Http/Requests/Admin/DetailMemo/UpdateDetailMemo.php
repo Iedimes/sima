@@ -28,11 +28,12 @@ class UpdateDetailMemo extends FormRequest
         return [
             'memo_id' => ['sometimes', 'integer'],
             'odependency_id' => ['sometimes', 'integer'],
-            'ddependency_id' => ['sometimes', 'integer'],
+            'ddependency' => [''],
             'date_entry' => [''],
             'date_exit' => [''],
-            'obs' => ['sometimes', 'string'],
+            'obs' => [''],
             'state_id' => [''],
+            'admin_user_id' => [''],
 
         ];
     }
@@ -50,5 +51,9 @@ class UpdateDetailMemo extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+    public function getDestinoId()
+    {
+        return $this->get('ddependency')['id'];
     }
 }

@@ -191,8 +191,9 @@ class MemosController extends Controller
         $detalle->odependency_id = $memo->odependency_id;
         $detalle->ddependency_id =$local_dependencia->id;
         $detalle->date_entry=$hoy;
-        $detalle->obs='DOCUMENTO RECEPCIONADO';
-        $detalle->state_id=1;
+        $detalle->obs='';
+        $detalle->state_id=3;
+        $detalle->admin_user_id=1;
         $detalle->save();
 
 
@@ -243,7 +244,7 @@ class MemosController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'memo_id', 'odependency_id', 'ddependency_id', 'date_entry', 'date_exit', 'obs', 'state_id'],
+            ['id', 'memo_id', 'odependency_id', 'ddependency_id', 'date_entry', 'date_exit', 'obs', 'state_id', 'admin_user_id'],
 
             // set columns to searchIn
             ['id', 'obs'],

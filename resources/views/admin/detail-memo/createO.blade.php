@@ -14,6 +14,7 @@
             :local_dependencia="{{$local_dependencia->id}}"
             {{-- :logueado="{{$logueado}}" --}}
             :hoy="'{{$hoy}}'"
+            :ddependency="{{$ddependency->toJson()}}"
 
             v-cloak
             inline-template>

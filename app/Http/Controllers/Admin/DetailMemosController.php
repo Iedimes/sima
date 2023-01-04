@@ -43,7 +43,7 @@ class DetailMemosController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'memo_id', 'odependency_id', 'ddependency_id', 'date_entry', 'date_exit', 'obs', 'state_id'],
+            ['id', 'memo_id', 'odependency_id', 'ddependency_id', 'date_entry', 'date_exit', 'obs', 'state_id', 'admin_user_id'],
 
             // set columns to searchIn
             ['id', 'obs']
@@ -114,6 +114,8 @@ class DetailMemosController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
         $sanitized ['state_id']=3;
+        $sanitized ['admin_user_id']=1;
+        $sanitized ['ddependency_id']=  $request->getDestinoId();
 
         // Store the DetailMemo
         $detailMemo = DetailMemo::create($sanitized);
@@ -184,11 +186,14 @@ class DetailMemosController extends Controller
 
     public function actualizar(UpdateDetailMemo $request, DetailMemo $detailMemo)
     {
+        $logueado = auth()->id();
         //return $detailMemo->memo_id;
         // Sanitize input
         $sanitized = $request->getSanitized();
         $sanitized ['date_entry']=Carbon::now();//date('d-m-Y h:y:s');
         $sanitized ['state_id']=1;
+        $sanitized ['admin_user_id']=$logueado;
+        $sanitized ['obs']='DOCUMENTO RECEPCIONADO';
 
         // Update changed values DetailMemo
         $detailMemo->update($sanitized);
@@ -205,15 +210,6 @@ class DetailMemosController extends Controller
 
     public function enviar(UpdateDetailMemo $request, DetailMemo $detailMemo)
     {
-        //return $detailMemo->memo_id;
-        // Sanitize input
-        $sanitized = $request->getSanitized();
-        $sanitized ['date_exit']=Carbon::now();//date('d-m-Y h:y:s');
-        $sanitized ['state_id']=2;
-
-        // Update changed values DetailMemo
-        $detailMemo->update($sanitized);
-
         $logueado = auth()->id();
         $obtenerci=UserCedula::where('user_id', '=', $logueado)
                                 ->select('cedula')
@@ -229,6 +225,20 @@ class DetailMemosController extends Controller
         $hoy=Carbon::now();
         //$hoy = $fecha->toJSON();
 
+        $ddependency = Dependency::all();
+        //return $detailMemo->memo_id;
+        // Sanitize input
+        $sanitized = $request->getSanitized();
+        $sanitized ['date_exit']=Carbon::now();//date('d-m-Y h:y:s');
+        $sanitized ['state_id']=2;
+        $sanitized ['admin_user_id']=$logueado;
+
+
+        // Update changed values DetailMemo
+        $detailMemo->update($sanitized);
+
+
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/memos/'.$detailMemo['memo_id'].'/show'),
@@ -236,7 +246,7 @@ class DetailMemosController extends Controller
             ];
         }
 
-        return view('admin.detail-memo.createO', compact('detailMemo', 'local_dependencia', 'logueado', 'hoy'));
+        return view('admin.detail-memo.createO', compact('detailMemo', 'local_dependencia', 'logueado', 'hoy', 'ddependency'));
     }
 
     /**

@@ -14,6 +14,7 @@ class DetailMemo extends Model
         'date_exit',
         'obs',
         'state_id',
+        'admin_user_id',
 
     ];
 
@@ -27,7 +28,7 @@ class DetailMemo extends Model
     ];
 
     protected $appends = ['resource_url'];
-    protected $with = ['post_odependencia', 'post_ddependencia', 'estado'];
+    protected $with = ['post_odependencia', 'post_ddependencia', 'estado', 'user_admin'];
 
     public function post_odependencia()
     {
@@ -46,6 +47,12 @@ class DetailMemo extends Model
         return $this->belongsTo('App\Models\State', 'state_id', 'id');
 
     }
+
+    public function user_admin()
+    {
+        return $this->hasOne(AdminUser::class, 'id', 'admin_user_id');
+    }
+
 
     /* ************************ ACCESSOR ************************* */
 

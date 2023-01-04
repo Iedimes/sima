@@ -17,7 +17,17 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('ddependency_id'), 'has-success': fields.ddependency_id && fields.ddependency_id.valid }">
     <label for="ddependency_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.detail-memo.columns.ddependency_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.ddependency_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('ddependency_id'), 'form-control-success': fields.ddependency_id && fields.ddependency_id.valid}" id="ddependency_id" name="ddependency_id" placeholder="{{ trans('admin.detail-memo.columns.ddependency_id') }}">
+        {{-- <input type="text" v-model="form.ddependency_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('ddependency_id'), 'form-control-success': fields.ddependency_id && fields.ddependency_id.valid}" id="ddependency_id" name="ddependency_id" placeholder="{{ trans('admin.detail-memo.columns.ddependency_id') }}"> --}}
+        <multiselect
+            v-model="form.ddependency"
+            :options="ddependency"
+            :multiple="false"
+            track-by="id"
+            label="name"
+            :taggable="true"
+            tag-placeholder=""
+            placeholder="{{ trans('admin.memo.columns.ddependency_id') }}">
+        </multiselect>
         <div v-if="errors.has('ddependency_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('ddependency_id') }}</div>
     </div>
 </div>

@@ -25,21 +25,25 @@
                 <strong>N°:</strong>  {{ $memo->number_memo }}
             </td>
             <td>
+                <strong>Fecha_Doc:</strong>  {{ date('d/m/Y',strtotime(trim($memo->date_doc))) }}
+            </td>
+            <td>
                 <strong>Referencia:</strong>  {{ $memo->ref }}
             </td>
-            <td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
                 <strong>Origen:</strong>  {{$memo->post_odependencia->name}}
             </td>
-            <td>
+            <td colspan="3">
                 <strong>Destino:</strong>  {{$memo->post_ddependencia->name}}
             </td>
         </tr>
         <tr>
+
             <td>
-                <strong>Fecha_Doc:</strong>  {{ $memo->date_doc }}
-            </td>
-            <td>
-                <strong>Fecha_Entrada:</strong>  {{ $memo->date_entry }}
+                <strong>Fecha_Entrada:</strong>  {{ date('d/m/Y H:i:s',strtotime(trim($memo->date_entry))) }}
             </td>
             <td>
                 <strong>Observación:</strong>  {{ $memo->obs }}
@@ -85,8 +89,17 @@
         <tr>
             <td style="border: 1px solid"> {{ $item->post_odependencia->name }}</td>
             <td style="border: 1px solid"> {{ $item->post_ddependencia->name }}</td>
-            <td style="border: 1px solid"> {{ $item->date_entry }}</td>
-            <td style="border: 1px solid"> {{ $item->date_exit }}</td>
+            @if (empty($item->date_entry))
+                <td style="border: 1px solid"></td>
+            @else
+                <td style="border: 1px solid"> {{ date('d/m/Y H:i:s',strtotime(trim($item->date_entry))) }}</td>
+            @endif
+            @if (empty($item->date_exit))
+                <td style="border: 1px solid"></td>
+            @else
+                <td style="border: 1px solid"> {{ date('d/m/Y H:i:s',strtotime(trim($item->date_exit))) }}</td>
+            @endif
+
             <td style="border: 1px solid"> {{ $item->obs }}</td>
             <td style="border: 1px solid"> {{ $item->user_admin->full_name }}</td>
             <td style="border: 1px solid"> {{ $item->estado->name}}</td>

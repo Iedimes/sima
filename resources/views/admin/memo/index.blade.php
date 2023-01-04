@@ -94,8 +94,8 @@
                                         <td>@{{ item.tipo_doc.name }}</td>
                                         <td>@{{ item.ref }}</td>
                                         <td>@{{ item.obs }}</td>
-                                        <td>@{{ item.date_doc | date }}</td>
-                                        <td>@{{ item.date_entry | datetime }}</td>
+                                        <td>@{{ item.date_doc | date("DD/MM/Y") }}</td>
+                                        <td>@{{ item.date_entry | datetime("DD/MM/Y HH:mm:ss") }}</td>
                                         {{-- <td>@{{ item.date_exit | datetime }}</td> --}}
                                         <td>@{{ item.post_odependencia.name }}</td>
                                         <td>@{{ item.post_ddependencia.name }}</td>

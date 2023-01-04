@@ -28,11 +28,12 @@ class StoreDetailMemo extends FormRequest
         return [
             'memo_id' => ['required', 'integer'],
             'odependency_id' => ['required', 'integer'],
-            'ddependency_id' => ['required', 'integer'],
+            'ddependency' => [''],
             'date_entry' => [''],
             'date_exit' => [''],
-            'obs' => ['required', 'string'],
+            'obs' => [''],
             'state_id' => [''],
+            'admin_user_id' => [''],
 
         ];
     }
@@ -49,5 +50,10 @@ class StoreDetailMemo extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    public function getDestinoId()
+    {
+        return $this->get('ddependency')['id'];
     }
 }
