@@ -77,7 +77,7 @@ class Memo extends Model implements HasMedia
 
     public function tipo_doc()
     {
-        return $this->belongsTo('App\Models\Doctype', 'type_id', 'id');
+        return $this->belongsTo('App\Models\DocType', 'type_id', 'id');
 
     }
 
