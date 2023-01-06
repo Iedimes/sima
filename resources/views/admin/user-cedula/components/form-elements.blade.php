@@ -10,7 +10,7 @@
             label="full_name"
             :taggable="true"
             tag-placeholder=""
-            placeholder="{{ trans('admin.memo.columns.user_id') }}">
+            placeholder="">
         </multiselect>
         <div v-if="errors.has('user_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('user_id') }}</div>
     </div>
