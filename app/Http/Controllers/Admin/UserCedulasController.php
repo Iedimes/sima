@@ -66,7 +66,7 @@ class UserCedulasController extends Controller
     {
         $this->authorize('admin.user-cedula.create');
 
-        $user=AdminUser::all();
+        return $user=AdminUser::where('id', '<>', 1)->orderBy('id')->get();
 
         return view('admin.user-cedula.create', compact('user'));
     }
@@ -118,9 +118,11 @@ class UserCedulasController extends Controller
     {
         $this->authorize('admin.user-cedula.edit', $userCedula);
 
+        $user=AdminUser::where('id', '<>', 1)->orderBy('id')->get();
 
         return view('admin.user-cedula.edit', [
             'userCedula' => $userCedula,
+            'user' => $user,
         ]);
     }
 
@@ -135,6 +137,7 @@ class UserCedulasController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        $sanitized ['user_id']=  $request->getUserId();
 
         // Update changed values UserCedula
         $userCedula->update($sanitized);

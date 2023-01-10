@@ -19,7 +19,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('cedula'), 'has-success': fields.cedula && fields.cedula.valid }">
     <label for="cedula" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.user-cedula.columns.cedula') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.cedula" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('cedula'), 'form-control-success': fields.cedula && fields.cedula.valid}" id="cedula" name="cedula" placeholder="{{ trans('admin.user-cedula.columns.cedula') }}">
+        <input type="text" v-model="form.cedula" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('cedula'), 'form-control-success': fields.cedula && fields.cedula.valid}" id="cedula" name="cedula" placeholder="{{ trans('admin.user-cedula.columns.cedula') }}">
         <div v-if="errors.has('cedula')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('cedula') }}</div>
     </div>
 </div>

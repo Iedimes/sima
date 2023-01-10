@@ -13,8 +13,8 @@
             :local_dependencia="{{$local_dependencia->id}}"
             :logueado="{{$logueado}}"
             :hoy="'{{$hoy}}'"
-            :type="{{ $type->toJson() }}"
-            :odependency="{{$odependency->toJson()}}"
+            {{-- :type="{{ $type->toJson() }}" --}}
+            {{-- :odependency="{{$odependency->toJson()}}" --}}
             v-cloak
             inline-template>
 

@@ -26,7 +26,7 @@ class UpdateMemo extends FormRequest
     public function rules(): array
     {
         return [
-            'odependency' => ['sometimes'],
+            'odependency_id' => ['sometimes'],
             'number_memo' => ['sometimes', 'string'],
             'ref' => ['sometimes', 'string'],
             'obs' => ['sometimes', 'string'],
@@ -36,7 +36,7 @@ class UpdateMemo extends FormRequest
             'ddependency_id' => ['sometimes'],
             'admin_user_id' => ['sometimes', 'integer'],
             'state_id' => ['sometimes', 'integer'],
-            'type' => ['sometimes'],
+            'type_id' => ['sometimes'],
 
         ];
     }
@@ -57,13 +57,13 @@ class UpdateMemo extends FormRequest
     }
 
 
-    public function getTypeId()
-    {
-        return $this->get('type')['id'];
-    }
+    // public function getTypeId()
+    // {
+    //     return $this->get('type')['id'];
+    // }
 
-    public function getOrigenId()
-    {
-        return $this->get('odependency')['id'];
-    }
+    // public function getOrigenId()
+    // {
+    //     return $this->get('odependency')['id'];
+    // }
 }

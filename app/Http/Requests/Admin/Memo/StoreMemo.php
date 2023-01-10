@@ -26,7 +26,7 @@ class StoreMemo extends FormRequest
     public function rules(): array
     {
         return [
-            'odependency' => ['required'],
+            'odependency_id' => ['required'],
             'number_memo' => ['required', 'string'],
             'ref' => ['required', 'string'],
             'obs' => ['required', 'string'],
@@ -36,7 +36,7 @@ class StoreMemo extends FormRequest
             'ddependency_id' => [''],
             'admin_user_id' => ['required', 'integer'],
             'state_id' => ['required', 'integer'],
-            'type' => ['required'],
+            'type_id' => ['required'],
 
         ];
     }
@@ -55,13 +55,13 @@ class StoreMemo extends FormRequest
         return $sanitized;
     }
 
-    public function getTypeId()
-    {
-        return $this->get('type')['id'];
-    }
+    // public function getTypeId()
+    // {
+    //     return $this->get('type')['id'];
+    // }
 
-    public function getOrigenId()
-    {
-        return $this->get('odependency')['id'];
-    }
+    // public function getOrigenId()
+    // {
+    //     return $this->get('odependency')['id'];
+    // }
 }

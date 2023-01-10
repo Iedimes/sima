@@ -110,11 +110,11 @@ class MemosController extends Controller
         $hoy=Carbon::now();
         //$hoy = $fecha->toJSON();
 
-        $type=DocType::all();
-        $odependency = Dependency::all();
+        // $type=DocType::all();
+        // $odependency = Dependency::all();
 
 
-        return view('admin.memo.create', compact('local_dependencia', 'logueado', 'hoy', 'type', 'odependency'));
+        return view('admin.memo.create', compact('local_dependencia', 'logueado', 'hoy'));
     }
 
 
@@ -162,8 +162,8 @@ class MemosController extends Controller
         //return $request;
         // Sanitize input
         $sanitized = $request->getSanitized();
-        $sanitized ['type_id']=  $request->getTypeId();
-        $sanitized ['odependency_id']=  $request->getOrigenId();
+        // $sanitized ['type_id']=  $request->getTypeId();
+        // $sanitized ['odependency_id']=  $request->getOrigenId();
 
 
         // Store the Memo
@@ -295,13 +295,13 @@ class MemosController extends Controller
         $depen=RHM006::where('FuncNro', '=', $obtenerci['cedula'])
                                 ->first();
 
-        $type=DocType::all();
-        $odependency=Dependency::all();
+        //$type=DocType::all();
+        // $odependency=Dependency::all();
 
         return view('admin.memo.edit', [
             'memo' => $memo,
-            'type' => $type,
-            'odependency' => $odependency,
+            // 'type' => $type,
+            // 'odependency' => $odependency,
         ]);
     }
 
@@ -317,8 +317,8 @@ class MemosController extends Controller
         //return $request;
         // Sanitize input
         $sanitized = $request->getSanitized();
-        $sanitized ['type_id']=  $request->getTypeId();
-        $sanitized ['odependency_id']=  $request->getOrigenId();
+        //$sanitized ['type_id']=  $request->getTypeId();
+        // $sanitized ['odependency_id']=  $request->getOrigenId();
 
 
         // Update changed values Memo

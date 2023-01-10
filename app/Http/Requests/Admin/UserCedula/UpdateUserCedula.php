@@ -26,9 +26,9 @@ class UpdateUserCedula extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['sometimes', 'integer'],
+            'user' => ['sometimes', 'integer'],
             'cedula' => ['sometimes', 'integer'],
-            
+
         ];
     }
 
@@ -45,5 +45,10 @@ class UpdateUserCedula extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    public function getUserId()
+    {
+        return $this->get('user')['id'];
     }
 }
